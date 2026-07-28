@@ -1,4 +1,154 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+
+// ==========================================
+// BRIDAL EXPERIENCE SERVICE CHIPS
+// ==========================================
+
+const BRIDAL_SERVICES = [
+  "PRE-BRIDAL SKINCARE",
+  "BRIDAL MAKEUP",
+  "AIRBRUSH MAKEUP",
+  "ENGAGEMENT MAKEUP",
+  "RECEPTION MAKEUP",
+  "COCKTAIL LOOK",
+  "HALDI LOOK",
+  "MEHENDI LOOK",
+  "SANGEET LOOK",
+  "BRIDAL CONSULTATION"
+];
+
+function BridalExperienceSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleBridalWhatsApp = () => {
+    const messageLines = [
+      `Hello Creative Salon,`,
+      ``,
+      `I would like to book a Bridal Consultation.`,
+      ``,
+      `Please share available dates and bridal package details.`,
+      ``,
+      `Thank you.`
+    ];
+
+    const encodedMsg = encodeURIComponent(messageLines.join('\n'));
+    const whatsappUrl = `https://wa.me/919810307815?text=${encodedMsg}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  return (
+    <div
+      ref={sectionRef}
+      id="bridal"
+      className="relative w-full bg-[#F7F4EE] text-[#1C1D1D] py-16 sm:py-24 lg:py-28 px-6 sm:px-12 lg:px-20 overflow-hidden border-t border-[#343536]/20"
+    >
+      {/* Subtle Warm Luxury Ambient Glow */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#9A6548]/5 rounded-full blur-[100px] pointer-events-none -mr-32 -mt-32" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#9A6548]/5 rounded-full blur-[100px] pointer-events-none -ml-32 -mb-32" />
+
+      <div className="max-w-[1340px] mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* LEFT: Cinematic Bridal Image */}
+          <div
+            className={`relative group overflow-hidden rounded-sm shadow-2xl min-h-[420px] sm:min-h-[520px] lg:min-h-[620px] w-full border border-[#1C1D1D]/10 transition-all duration-1000 ease-out ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            }`}
+          >
+            <img
+              src="/images/BRIDAL1.jpg"
+              alt="Luxury Indian Bridal Makeup & Hair Styling"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105 brightness-[0.95]"
+              onError={(e) => {
+                e.currentTarget.src = "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&q=80&w=1400";
+              }}
+            />
+
+            {/* Subtle Editorial Vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1C1D1D]/60 via-[#1C1D1D]/15 to-transparent opacity-80 group-hover:opacity-65 transition-opacity duration-700 pointer-events-none" />
+
+            
+          </div>
+
+          {/* RIGHT: Content & Service Chips */}
+          <div
+            className={`flex flex-col justify-center space-y-6 sm:space-y-8 transition-all duration-1000 ease-out delay-200 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            }`}
+          >
+            {/* Small Label */}
+            <div className="flex items-center gap-3">
+              <span className="w-8 h-[1px] bg-[#9A6548]" />
+              <span className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] text-[#9A6548] uppercase">
+                BRIDAL
+              </span>
+            </div>
+
+            {/* Large Heading */}
+            <h2 className="font-['Cormorant_Garamond',serif] text-4xl sm:text-5xl lg:text-6xl font-light text-[#1C1D1D] leading-[1.12] tracking-tight">
+              Bridal Beauty, <br />
+              <span className="text-[#9A6548] italic font-normal">Perfectly Crafted.</span>
+            </h2>
+
+            {/* Short Description */}
+            <p className="font-['Manrope',sans-serif] text-sm sm:text-base font-light leading-relaxed text-[#1C1D1D]/80 max-w-xl">
+              From pre-bridal skincare rituals to your wedding day transformation, our bridal experts create timeless looks designed to make every bride feel confident, radiant and unforgettable.
+            </p>
+
+            {/* Accent Separator */}
+            <div className="w-16 h-[1px] bg-[#9A6548]/40" />
+
+            {/* Service Chips Grid */}
+            <div className="flex flex-wrap gap-1.5 pt-1">
+  {BRIDAL_SERVICES.map((service) => (
+    <span
+      key={service}
+      className="inline-block text-[10px] tracking-[0.12em] uppercase font-medium text-[#1C1D1D]/75 bg-[#1C1D1D]/[0.03] border border-[#1C1D1D]/10 px-2.5 py-1 rounded-sm hover:border-[#9A6548] hover:text-[#9A6548] hover:bg-[#9A6548]/5 transition-all duration-200 cursor-default select-none"
+    >
+      {service}
+    </span>
+  ))}
+</div>
+
+            {/* Premium CTA Button */}
+            <div className="pt-3 sm:pt-4">
+              <button
+                type="button"
+                onClick={handleBridalWhatsApp}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-[#9A6548] bg-[#9A6548] hover:bg-[#855437] hover:border-[#855437] text-[#F7F4EE] font-semibold text-xs sm:text-sm tracking-[0.2em] px-8 py-4 sm:py-4.5 rounded-sm shadow-md transition-all duration-300 group/btn cursor-pointer"
+              >
+                <span>BOOK BRIDAL CONSULTATION</span>
+                <span className="text-sm transition-transform duration-300 group-hover/btn:translate-x-1">→</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ==========================================
 // SERVICE CATALOG DATA (NO PRICING)
@@ -308,7 +458,7 @@ export default function Services() {
           
           {/* Background Image with Scale Zoom Effect */}
           <img
-            src="/images/services-woman.png"
+            src="/images/her.jpg"
             alt="Women's Hair Artistry & Beauty"
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105 brightness-[0.9]"
@@ -370,7 +520,7 @@ export default function Services() {
           
           {/* Background Image with Scale Zoom Effect */}
           <img
-            src="/images/services-man.png"
+            src="/images/him.png"
             alt="Men's Refined Grooming"
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-105 brightness-[0.88]"
@@ -430,6 +580,9 @@ export default function Services() {
 
       {/* Bottom Subtle Separator */}
       <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#343536] to-transparent" />
+
+      {/* ================= BRIDAL EXPERIENCE SECTION ================= */}
+      <BridalExperienceSection />
 
       {/* ========================================================= */}
       {/* 1. BOOK YOUR VISIT — GENDER ENTRY CHOICE MODAL */}

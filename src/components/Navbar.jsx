@@ -8,7 +8,6 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Throttle with rAF to avoid firing on every scroll pixel
       if (rafRef.current) return
       rafRef.current = requestAnimationFrame(() => {
         setScrolled(window.scrollY > 40)
@@ -32,7 +31,19 @@ export default function Navbar() {
     }
   }, [])
 
-  if (isModalOpen) return null;
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileOpen])
+
+  if (isModalOpen) return null
 
   const navLinks = [
     { label: 'HOME', href: '#' },
@@ -81,10 +92,7 @@ export default function Navbar() {
           justify-between
         "
       >
-        {/* ============================= */}
         {/* Creative Salon Logo */}
-        {/* ============================= */}
-
         <a
           href="#"
           onClick={(e) => handleNavClick(e, '#')}
@@ -128,10 +136,7 @@ export default function Navbar() {
           />
         </a>
 
-        {/* ============================= */}
         {/* Desktop Navigation */}
-        {/* ============================= */}
-
         <div className="hidden lg:flex items-center gap-7 xl:gap-9">
           {navLinks.map((link) => (
             <a
@@ -158,8 +163,6 @@ export default function Navbar() {
               "
             >
               {link.label}
-
-              {/* Gold underline */}
               <span
                 className="
                   absolute
@@ -182,16 +185,17 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* ============================= */}
         {/* Book Appointment CTA */}
-        {/* ============================= */}
-
         <div className="hidden lg:flex items-center">
           <button
             type="button"
             onClick={(e) => {
-              e.preventDefault();
-              window.dispatchEvent(new CustomEvent('open-service-modal', { detail: { gender: 'choose' } }));
+              e.preventDefault()
+              window.dispatchEvent(
+                new CustomEvent('open-service-modal', {
+                  detail: { gender: 'choose' },
+                })
+              )
             }}
             className="
               font-manrope
@@ -218,10 +222,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* ============================= */}
         {/* Mobile Hamburger */}
-        {/* ============================= */}
-
         <button
           type="button"
           className="
@@ -271,36 +272,44 @@ export default function Navbar() {
       </div>
 
       {/* ============================= */}
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation Menu Overlay */}
       {/* ============================= */}
 
       {mobileOpen && (
         <div
           className="
             lg:hidden
-            absolute
-            top-full
-            left-0
-            w-full
+            fixed
+            inset-x-0
+            top-[68px] md:top-[72px]
+            h-[calc(100vh-68px)] md:h-[calc(100vh-72px)]
 
-            bg-[#1C1D1D]/98
-            backdrop-blur-xl
+            bg-gradient-to-b from-[#1C1D1D] via-[#161717] to-[#121313]
+            backdrop-blur-2xl
 
             border-t
             border-[#C9A45F]/20
 
-            shadow-2xl
+            overflow-y-auto
+            animate-fadeIn
           "
         >
+          {/* Subtle Ambient Gold Glow Background */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#C9A45F]/10 via-transparent to-transparent pointer-events-none" />
+
           <div
             className="
+              relative
+              z-10
               flex
               flex-col
               items-center
+              justify-center
 
-              py-8
+              min-h-full
+              py-12
               px-6
-              gap-6
+              gap-7
             "
           >
             {navLinks.map((link) => (
@@ -310,39 +319,42 @@ export default function Navbar() {
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="
                   font-manrope
-                  text-xs
+                  text-sm
                   font-medium
-                  tracking-[0.25em]
+                  tracking-[0.3em]
 
-                  text-[#F7F4EE]
+                  text-[#F7F4EE]/90
                   hover:text-[#C9A45F]
 
-                  transition-colors
+                  transition-all
                   duration-300
+                  hover:scale-105
                 "
               >
                 {link.label}
               </a>
             ))}
 
-            {/* Divider */}
-
-            <div className="w-12 h-[1px] bg-[#C9A45F]/30 my-1" />
+            {/* Subtle Gold Divider */}
+            <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#C9A45F]/40 to-transparent my-2" />
 
             {/* Mobile Appointment Button */}
-
             <button
               type="button"
               onClick={(e) => {
-                e.preventDefault();
-                setMobileOpen(false);
-                window.dispatchEvent(new CustomEvent('open-service-modal', { detail: { gender: 'choose' } }));
+                e.preventDefault()
+                setMobileOpen(false)
+                window.dispatchEvent(
+                  new CustomEvent('open-service-modal', {
+                    detail: { gender: 'choose' },
+                  })
+                )
               }}
               className="
                 font-manrope
                 text-xs
                 font-semibold
-                tracking-[0.20em]
+                tracking-[0.25em]
                 uppercase
                 px-8
                 py-3.5
@@ -351,9 +363,12 @@ export default function Navbar() {
                 text-[#1C1D1D]
                 bg-[#C9A45F]
                 hover:bg-[#D4B06A]
+                shadow-lg
+                shadow-[#C9A45F]/10
                 transition-all
                 duration-300
                 cursor-pointer
+                active:scale-95
               "
             >
               Book Appointment
