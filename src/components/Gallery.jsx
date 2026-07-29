@@ -17,7 +17,6 @@ const ALL_MEDIA = [
   { id: 9, type: 'image', src: '/images/reception.jpg' },
   { id: 10, type: 'image', src: '/images/wash-station.jpg' },
   { id: 11, type: 'image', src: '/images/stylechair.png' },
-
 ];
 
 const INITIAL_SHOW_COUNT = 4;
@@ -199,35 +198,37 @@ export default function Gallery() {
       </div>
 
       {/* ========================================================= */}
-      {/* FULL-COLLECTION POPUP MODAL (EXPLORE MORE) */}
+      {/* FULL-COLLECTION POPUP MODAL (EXPLORE MORE - MOBILE OPTIMIZED) */}
       {/* ========================================================= */}
       {isExploreOpen && (
-        <div className="fixed inset-0 z-[9990] bg-[#1C1D1D]/95 backdrop-blur-2xl flex flex-col p-4 sm:p-8 text-[#F7F4EE] animate-fadeIn overflow-y-auto">
+        <div className="fixed inset-0 z-[9990] h-screen w-screen bg-[#1C1D1D]/95 backdrop-blur-2xl flex flex-col text-[#F7F4EE] animate-fadeIn overflow-y-auto">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-[#F7F4EE]/15 pb-4 mb-8 max-w-7xl w-full mx-auto">
-            <div>
-              <p className="text-[10px] font-semibold tracking-[0.25em] text-[#9A6548] uppercase">
-                THE ATELIER GALLERY
-              </p>
-              <h3 className="font-['Cormorant_Garamond',serif] text-2xl sm:text-3xl text-[#F7F4EE]">
-                All Media & Moments
-              </h3>
-            </div>
+          <div className="sticky top-0 z-[9995] bg-[#1C1D1D]/90 backdrop-blur-md px-4 sm:px-8 py-4 border-b border-[#F7F4EE]/15 w-full">
+            <div className="flex items-center justify-between max-w-7xl mx-auto">
+              <div>
+                <p className="text-[10px] font-semibold tracking-[0.25em] text-[#9A6548] uppercase">
+                  THE ATELIER GALLERY
+                </p>
+                <h3 className="font-['Cormorant_Garamond',serif] text-2xl sm:text-3xl text-[#F7F4EE]">
+                  All Media & Moments
+                </h3>
+              </div>
 
-            <button
-              type="button"
-              onClick={() => setIsExploreOpen(false)}
-              className="w-10 h-10 rounded-full bg-[#F7F4EE]/10 hover:bg-[#9A6548] text-[#F7F4EE] flex items-center justify-center transition-all cursor-pointer hover:rotate-90 duration-300"
-              title="Close"
-            >
-              <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+              <button
+                type="button"
+                onClick={() => setIsExploreOpen(false)}
+                className="w-10 h-10 rounded-full bg-[#F7F4EE]/10 hover:bg-[#9A6548] text-[#F7F4EE] flex items-center justify-center transition-all cursor-pointer hover:rotate-90 duration-300"
+                title="Close"
+              >
+                <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
           </div>
 
           {/* All Photos & Videos Grid */}
-          <div className="max-w-7xl w-full mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 pb-12">
+          <div className="max-w-7xl w-full mx-auto p-4 sm:p-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 pb-20">
             {ALL_MEDIA.map((item, index) => (
               <ReelCard
                 key={`explore-${item.id}`}

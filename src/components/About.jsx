@@ -134,7 +134,7 @@ export default function About() {
             {/* Stat 1: 10+ */}
             <div>
               <span className="font-['Cormorant_Garamond'] text-5xl md:text-6xl font-light text-[#9A6548] block leading-none mb-2">
-                <AnimatedCounter target={10} suffix="+" isVisible={isVisible} />
+                <AnimatedCounter target={15} suffix="+" isVisible={isVisible} />
               </span>
               <span className="font-['Manrope'] text-[11px] font-semibold tracking-[0.18em] text-[#1C1D1D]/70 uppercase block">
                 YEARS OF EXPERTISE
@@ -144,7 +144,7 @@ export default function About() {
             {/* Stat 2: 5+ */}
             <div>
               <span className="font-['Cormorant_Garamond'] text-5xl md:text-6xl font-light text-[#9A6548] block leading-none mb-2">
-                <AnimatedCounter target={5} suffix="+" isVisible={isVisible} />
+                <AnimatedCounter target={10} suffix="+" isVisible={isVisible} />
               </span>
               <span className="font-['Manrope'] text-[11px] font-semibold tracking-[0.18em] text-[#1C1D1D]/70 uppercase block">
                 YEARS OF CREATIVE SALON

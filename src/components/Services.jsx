@@ -70,9 +70,8 @@ function BridalExperienceSection() {
 
           {/* LEFT: Cinematic Bridal Image */}
           <div
-            className={`relative group overflow-hidden rounded-sm shadow-2xl min-h-[420px] sm:min-h-[520px] lg:min-h-[620px] w-full border border-[#1C1D1D]/10 transition-all duration-1000 ease-out ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}
+            className={`relative group overflow-hidden rounded-sm shadow-2xl min-h-[420px] sm:min-h-[520px] lg:min-h-[620px] w-full border border-[#1C1D1D]/10 transition-all duration-1000 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+              }`}
           >
             <img
               src="/images/BRIDAL1.jpg"
@@ -87,14 +86,13 @@ function BridalExperienceSection() {
             {/* Subtle Editorial Vignette */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#1C1D1D]/60 via-[#1C1D1D]/15 to-transparent opacity-80 group-hover:opacity-65 transition-opacity duration-700 pointer-events-none" />
 
-            
+
           </div>
 
           {/* RIGHT: Content & Service Chips */}
           <div
-            className={`flex flex-col justify-center space-y-6 sm:space-y-8 transition-all duration-1000 ease-out delay-200 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}
+            className={`flex flex-col justify-center space-y-6 sm:space-y-8 transition-all duration-1000 ease-out delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+              }`}
           >
             {/* Small Label */}
             <div className="flex items-center gap-3">
@@ -120,15 +118,15 @@ function BridalExperienceSection() {
 
             {/* Service Chips Grid */}
             <div className="flex flex-wrap gap-1.5 pt-1">
-  {BRIDAL_SERVICES.map((service) => (
-    <span
-      key={service}
-      className="inline-block text-[10px] tracking-[0.12em] uppercase font-medium text-[#1C1D1D]/75 bg-[#1C1D1D]/[0.03] border border-[#1C1D1D]/10 px-2.5 py-1 rounded-sm hover:border-[#9A6548] hover:text-[#9A6548] hover:bg-[#9A6548]/5 transition-all duration-200 cursor-default select-none"
-    >
-      {service}
-    </span>
-  ))}
-</div>
+              {BRIDAL_SERVICES.map((service) => (
+                <span
+                  key={service}
+                  className="inline-block text-[10px] tracking-[0.12em] uppercase font-medium text-[#1C1D1D]/75 bg-[#1C1D1D]/[0.03] border border-[#1C1D1D]/10 px-2.5 py-1 rounded-sm hover:border-[#9A6548] hover:text-[#9A6548] hover:bg-[#9A6548]/5 transition-all duration-200 cursor-default select-none"
+                >
+                  {service}
+                </span>
+              ))}
+            </div>
 
             {/* Premium CTA Button */}
             <div className="pt-3 sm:pt-4">
@@ -145,6 +143,210 @@ function BridalExperienceSection() {
           </div>
 
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ==========================================
+// CREATIVE PRIVILEGE MEMBERSHIP SECTION
+// ==========================================
+
+function MembershipSection({ onSelectMembership }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={sectionRef}
+      id="membership"
+      className="relative w-full bg-[#F7F4EE] text-[#1C1D1D] py-14 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-16 overflow-hidden border-t border-[#1C1D1D]/10 font-['Manrope',sans-serif]"
+    >
+      {/* Subtle Warm Luxury Ambient Glow */}
+      <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-[#9A6548]/5 rounded-full blur-[100px] pointer-events-none -mr-32 -mt-32" />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-[#9A6548]/5 rounded-full blur-[100px] pointer-events-none -ml-32 -mb-32" />
+
+      <div className="max-w-[1240px] mx-auto relative z-10">
+        
+        {/* SECTION HEADER */}
+        <div
+          className={`text-center max-w-2xl mx-auto space-y-3 transition-all duration-1000 ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
+          <div className="flex items-center justify-center gap-3">
+            <span className="w-8 h-[1px] bg-[#9A6548]" />
+            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] text-[#9A6548] uppercase">
+              EXCLUSIVE MEMBERSHIP
+            </span>
+            <span className="w-8 h-[1px] bg-[#9A6548]" />
+          </div>
+
+          <h2 className="font-['Cormorant_Garamond',serif] text-3xl sm:text-4xl lg:text-5xl font-light text-[#1C1D1D] leading-[1.15] tracking-tight">
+            Creative Privilege <span className="text-[#9A6548] italic font-normal">Membership</span>
+          </h2>
+
+          <p className="font-['Manrope',sans-serif] text-xs sm:text-sm font-light leading-relaxed text-[#1C1D1D]/75 max-w-lg mx-auto">
+            Become a Creative Privilege Member and enjoy premium wallet value, priority appointments, exclusive rewards and luxury beauty experiences.
+          </p>
+        </div>
+
+        {/* CARDS GRID (Compact & Natural Height/Width) */}
+        <div
+          className={`grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mt-8 sm:mt-12 max-w-3xl mx-auto transition-all duration-1000 ease-out delay-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
+          {/* CARD 1: GOLD MEMBERSHIP */}
+          <div className="relative group bg-[#F7F4EE] border border-[#1C1D1D]/15 hover:border-[#9A6548] rounded-sm p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1">
+            <div>
+              {/* Header */}
+              <div className="pb-4 border-b border-[#1C1D1D]/10">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-['Cormorant_Garamond',serif] text-2xl sm:text-3xl font-normal text-[#1C1D1D] tracking-wide">
+                    GOLD MEMBERSHIP
+                  </h3>
+                </div>
+
+                {/* Investment Tagline */}
+                <div className="mt-2 flex items-center justify-between text-xs text-[#1C1D1D]/65">
+                  <span className="uppercase tracking-wider font-light">Investment</span>
+                  <span className="font-medium text-[#1C1D1D]">₹6,000</span>
+                </div>
+
+                {/* Primary Focus: Large Wallet Value & Bold Bonus */}
+                <div className="mt-3 p-3 bg-[#9A6548]/10 border border-[#9A6548]/25 rounded-sm">
+                  <div className="text-[10px] font-semibold tracking-[0.2em] text-[#9A6548] uppercase mb-1">
+                    YOU RECEIVE IN WALLET
+                  </div>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <div className="font-['Cormorant_Garamond',serif] text-4xl sm:text-5xl font-bold text-[#1C1D1D] leading-none">
+                      ₹7,500
+                    </div>
+                    <div className="bg-[#9A6548] text-[#F7F4EE] font-bold text-xs sm:text-sm px-2.5 py-1 rounded-sm shadow-sm tracking-wide shrink-0">
+                      +₹1,500 BONUS
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Benefits */}
+              <ul className="py-4 space-y-2 text-xs font-light text-[#1C1D1D]/85">
+                {[
+                  "Priority Appointments",
+                  "Exclusive Member Offers",
+                  "Bonus Wallet Value",
+                  "Birthday Rewards",
+                  "Premium Consultation"
+                ].map((benefit) => (
+                  <li key={benefit} className="flex items-center gap-2">
+                    <span className="text-[#9A6548] font-bold text-xs">✓</span>
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Button */}
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => onSelectMembership('Gold Membership')}
+                className="w-full border border-[#9A6548] bg-transparent hover:bg-[#9A6548] text-[#9A6548] hover:text-[#F7F4EE] font-semibold text-xs tracking-[0.2em] uppercase py-3 rounded-sm transition-all duration-300 cursor-pointer shadow-sm text-center"
+              >
+                BECOME A GOLD MEMBER
+              </button>
+            </div>
+          </div>
+
+          {/* CARD 2: PLATINUM MEMBERSHIP */}
+          <div className="relative group bg-[#F7F4EE] border border-[#9A6548]/50 hover:border-[#9A6548] rounded-sm p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1">
+            {/* Badge */}
+            <div className="absolute -top-3 right-5 bg-[#9A6548] text-[#F7F4EE] font-bold text-[9px] sm:text-[10px] tracking-[0.2em] uppercase px-2.5 py-0.5 rounded-sm shadow-sm z-10">
+              MOST POPULAR
+            </div>
+
+            <div>
+              {/* Header */}
+              <div className="pb-4 border-b border-[#1C1D1D]/10">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-['Cormorant_Garamond',serif] text-2xl sm:text-3xl font-normal text-[#1C1D1D] tracking-wide">
+                    PLATINUM MEMBERSHIP
+                  </h3>
+                </div>
+
+                {/* Investment Tagline */}
+                <div className="mt-2 flex items-center justify-between text-xs text-[#1C1D1D]/65">
+                  <span className="uppercase tracking-wider font-light">Investment</span>
+                  <span className="font-medium text-[#1C1D1D]">₹11,999</span>
+                </div>
+
+                {/* Primary Focus: Large Wallet Value & Bold Bonus */}
+                <div className="mt-3 p-3 bg-[#9A6548]/15 border border-[#9A6548]/40 rounded-sm">
+                  <div className="text-[10px] font-semibold tracking-[0.2em] text-[#9A6548] uppercase mb-1">
+                    YOU RECEIVE IN WALLET
+                  </div>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <div className="font-['Cormorant_Garamond',serif] text-4xl sm:text-5xl font-bold text-[#1C1D1D] leading-none">
+                      ₹15,499
+                    </div>
+                    <div className="bg-[#9A6548] text-[#F7F4EE] font-bold text-xs sm:text-sm px-2.5 py-1 rounded-sm shadow-sm tracking-wide shrink-0">
+                      +₹3,500 BONUS
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Benefits */}
+              <ul className="py-4 space-y-2 text-xs font-light text-[#1C1D1D]/85">
+                {[
+                  "Everything in Gold",
+                  "VIP Priority Booking",
+                  "Highest Wallet Bonus",
+                  "Exclusive Beauty Events",
+                  "Complimentary Consultation",
+                  "Bridal Benefits"
+                ].map((benefit) => (
+                  <li key={benefit} className="flex items-center gap-2">
+                    <span className="text-[#9A6548] font-bold text-xs">✓</span>
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Button */}
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => onSelectMembership('Platinum Membership')}
+                className="w-full border border-[#9A6548] bg-[#9A6548] hover:bg-[#855437] hover:border-[#855437] text-[#F7F4EE] font-bold text-xs tracking-[0.2em] uppercase py-3 rounded-sm transition-all duration-300 cursor-pointer shadow-sm text-center"
+              >
+                BECOME A PLATINUM MEMBER
+              </button>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
   );
@@ -341,6 +543,52 @@ export default function Services() {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('Morning');
 
+  // Membership Modal State
+  const [isMembershipModalOpen, setIsMembershipModalOpen] = useState(false);
+  const [selectedMembership, setSelectedMembership] = useState('Gold Membership');
+  const [membershipName, setMembershipName] = useState('');
+  const [membershipPhone, setMembershipPhone] = useState('');
+  const [membershipTime, setMembershipTime] = useState('Morning');
+
+  const handleOpenMembershipModal = (type) => {
+    setSelectedMembership(type);
+    setMembershipName('');
+    setMembershipPhone('');
+    setMembershipTime('Morning');
+    setIsMembershipModalOpen(true);
+  };
+
+  const handleMembershipWhatsApp = (e) => {
+    e.preventDefault();
+    if (!membershipName.trim() || !membershipPhone.trim()) return;
+
+    const messageLines = [
+      `Hello Creative Salon,`,
+      ``,
+      `I would like to become a Creative Privilege Member.`,
+      ``,
+      `Membership:`,
+      selectedMembership,
+      ``,
+      `Name:`,
+      membershipName.trim(),
+      ``,
+      `Phone:`,
+      membershipPhone.trim(),
+      ``,
+      `Preferred Contact Time:`,
+      membershipTime,
+      ``,
+      `Please contact me regarding the membership registration and payment process.`,
+      ``,
+      `Thank you.`
+    ];
+
+    const encodedMsg = encodeURIComponent(messageLines.join('\n'));
+    const whatsappUrl = `https://wa.me/919810307815?text=${encodedMsg}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   // Listen for global open-service-modal custom events
   useEffect(() => {
     const handleOpenServiceModal = (e) => {
@@ -362,7 +610,7 @@ export default function Services() {
 
   // Prevent background scrolling and dispatch modal-state to hide Navbar when active
   useEffect(() => {
-    const isAnyModalActive = isChoiceModalOpen || isModalOpen;
+    const isAnyModalActive = isChoiceModalOpen || isModalOpen || isMembershipModalOpen;
     if (isAnyModalActive) {
       document.body.style.overflow = 'hidden';
       window.dispatchEvent(new CustomEvent('modal-state', { detail: { isOpen: true } }));
@@ -374,7 +622,7 @@ export default function Services() {
       document.body.style.overflow = 'unset';
       window.dispatchEvent(new CustomEvent('modal-state', { detail: { isOpen: false } }));
     };
-  }, [isChoiceModalOpen, isModalOpen]);
+  }, [isChoiceModalOpen, isModalOpen, isMembershipModalOpen]);
 
   // Open modal handler
   const handleOpenModal = (gender) => {
@@ -446,16 +694,16 @@ export default function Services() {
 
   return (
     <section id="services" className="relative w-full bg-[#1C1D1D] text-[#F7F4EE] overflow-hidden font-['Manrope',sans-serif]">
-      
+
       {/* Top Subtle Border / Separator */}
       <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#343536] to-transparent" />
 
       {/* Split-Screen Container */}
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full min-h-[85vh]">
-        
+
         {/* ================= LEFT COLUMN — WOMEN ================= */}
         <div className="relative group overflow-hidden flex flex-col justify-end min-h-[560px] lg:min-h-[750px] p-8 sm:p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-[#343536]/80">
-          
+
           {/* Background Image with Scale Zoom Effect */}
           <img
             src="/images/her.jpg"
@@ -480,7 +728,7 @@ export default function Services() {
 
           {/* Text Content Block */}
           <div className="relative z-10 space-y-6 max-w-xl">
-            
+
             {/* Heading */}
             <h2 className="font-['Cormorant_Garamond',serif] text-4xl sm:text-5xl lg:text-6xl font-light text-[#F7F4EE] leading-[1.12] tracking-tight">
               Beauty, <span className="text-[#9A6548] italic font-normal">Tailored</span> to You.
@@ -517,7 +765,7 @@ export default function Services() {
 
         {/* ================= RIGHT COLUMN — MEN ================= */}
         <div className="relative group overflow-hidden flex flex-col justify-end min-h-[560px] lg:min-h-[750px] p-8 sm:p-12 lg:p-16">
-          
+
           {/* Background Image with Scale Zoom Effect */}
           <img
             src="/images/him.png"
@@ -542,7 +790,7 @@ export default function Services() {
 
           {/* Text Content Block */}
           <div className="relative z-10 space-y-6 max-w-xl">
-            
+
             {/* Heading */}
             <h2 className="font-['Cormorant_Garamond',serif] text-4xl sm:text-5xl lg:text-6xl font-light text-[#F7F4EE] leading-[1.12] tracking-tight">
               Style, <span className="text-[#9A6548] italic font-normal">Crafted</span> for You.
@@ -584,15 +832,18 @@ export default function Services() {
       {/* ================= BRIDAL EXPERIENCE SECTION ================= */}
       <BridalExperienceSection />
 
+      {/* ================= CREATIVE PRIVILEGE MEMBERSHIP SECTION ================= */}
+      <MembershipSection onSelectMembership={handleOpenMembershipModal} />
+
       {/* ========================================================= */}
       {/* 1. BOOK YOUR VISIT — GENDER ENTRY CHOICE MODAL */}
       {/* ========================================================= */}
       {isChoiceModalOpen && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-[#1C1D1D]/90 backdrop-blur-md animate-fadeIn">
-          
+
           {/* Modal Box */}
           <div className="relative w-full max-w-lg bg-[#F7F4EE] text-[#1C1D1D] rounded-lg shadow-2xl p-6 sm:p-10 border border-[#343536]/20">
-            
+
             {/* Close Button */}
             <button
               type="button"
@@ -621,7 +872,7 @@ export default function Services() {
 
             {/* Options List */}
             <div className="space-y-4">
-              
+
               {/* FOR HER */}
               <button
                 type="button"
@@ -682,10 +933,10 @@ export default function Services() {
       {/* ========================================================= */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-0 sm:p-4 md:p-6 bg-[#1C1D1D]/90 backdrop-blur-md animate-fadeIn">
-          
+
           {/* Modal Card */}
           <div className="relative w-full max-w-5xl h-[100dvh] sm:h-[90vh] sm:max-h-[850px] bg-[#F7F4EE] text-[#1C1D1D] rounded-none sm:rounded-lg shadow-2xl flex flex-col overflow-hidden border border-[#343536]/20">
-            
+
             {/* ------------ MODAL STICKY HEADER ------------ */}
             <div className="sticky top-0 z-40 px-4 sm:px-10 py-4 sm:py-6 border-b border-[#343536]/15 flex items-center justify-between bg-[#F7F4EE] shrink-0 shadow-sm">
               <div className="pr-2">
@@ -720,7 +971,7 @@ export default function Services() {
             {/* ------------ MODAL BODY ------------ */}
             {step === 'selection' ? (
               <div className="flex-1 flex flex-col md:flex-row overflow-hidden bg-[#F7F4EE]">
-                
+
                 {/* CATEGORIES SIDEBAR / TOP BAR */}
                 <div className="w-full md:w-64 lg:w-72 border-b md:border-b-0 md:border-r border-[#343536]/15 bg-[#F7F4EE] p-4 sm:p-6 overflow-x-auto md:overflow-y-auto shrink-0 flex md:flex-col gap-1.5 scrollbar-none">
                   {currentCatalog.map((cat) => {
@@ -740,17 +991,15 @@ export default function Services() {
                         key={cat.category}
                         type="button"
                         onClick={() => setActiveCategory(cat.category)}
-                        className={`text-left px-4 py-3 rounded-md text-xs tracking-[0.15em] font-semibold uppercase transition-all whitespace-nowrap flex items-center justify-between gap-3 ${
-                          isActive
+                        className={`text-left px-4 py-3 rounded-md text-xs tracking-[0.15em] font-semibold uppercase transition-all whitespace-nowrap flex items-center justify-between gap-3 ${isActive
                             ? 'bg-[#1C1D1D] text-[#F7F4EE] shadow-sm'
                             : 'text-[#1C1D1D]/70 hover:text-[#1C1D1D] hover:bg-[#343536]/10'
-                        }`}
+                          }`}
                       >
                         <span>{cat.category}</span>
                         {categorySelectedCount > 0 && (
-                          <span className={`px-1.5 py-0.5 rounded-full text-[10px] ${
-                            isActive ? 'bg-[#9A6548] text-[#F7F4EE]' : 'bg-[#9A6548]/20 text-[#9A6548]'
-                          }`}>
+                          <span className={`px-1.5 py-0.5 rounded-full text-[10px] ${isActive ? 'bg-[#9A6548] text-[#F7F4EE]' : 'bg-[#9A6548]/20 text-[#9A6548]'
+                            }`}>
                             {categorySelectedCount}
                           </span>
                         )}
@@ -762,7 +1011,7 @@ export default function Services() {
                 {/* SERVICE LIST AREA */}
                 <div className="flex-1 p-6 sm:p-8 overflow-y-auto bg-[#F7F4EE]">
                   <div className="max-w-3xl space-y-8">
-                    
+
                     {/* Category Title */}
                     <div className="border-b border-[#343536]/15 pb-4">
                       <h4 className="font-['Cormorant_Garamond',serif] text-2xl sm:text-3xl font-normal text-[#1C1D1D]">
@@ -780,18 +1029,16 @@ export default function Services() {
                               key={service}
                               type="button"
                               onClick={() => toggleService(service)}
-                              className={`text-left p-4 rounded-md border text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${
-                                isSelected
+                              className={`text-left p-4 rounded-md border text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${isSelected
                                   ? 'border-[#9A6548] bg-[#9A6548]/10 text-[#1C1D1D] shadow-sm'
                                   : 'border-[#343536]/20 bg-[#F7F4EE] text-[#1C1D1D]/85 hover:border-[#343536]/40 hover:bg-[#343536]/5'
-                              }`}
+                                }`}
                             >
                               <span>{service}</span>
-                              <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
-                                isSelected
+                              <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${isSelected
                                   ? 'border-[#9A6548] bg-[#9A6548] text-[#F7F4EE]'
                                   : 'border-[#343536]/30 bg-transparent'
-                              }`}>
+                                }`}>
                                 {isSelected && (
                                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
@@ -820,18 +1067,16 @@ export default function Services() {
                                     key={service}
                                     type="button"
                                     onClick={() => toggleService(service)}
-                                    className={`text-left p-4 rounded-md border text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${
-                                      isSelected
+                                    className={`text-left p-4 rounded-md border text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${isSelected
                                         ? 'border-[#9A6548] bg-[#9A6548]/10 text-[#1C1D1D] shadow-sm'
                                         : 'border-[#343536]/20 bg-[#F7F4EE] text-[#1C1D1D]/85 hover:border-[#343536]/40 hover:bg-[#343536]/5'
-                                    }`}
+                                      }`}
                                   >
                                     <span>{service}</span>
-                                    <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
-                                      isSelected
+                                    <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${isSelected
                                         ? 'border-[#9A6548] bg-[#9A6548] text-[#F7F4EE]'
                                         : 'border-[#343536]/30 bg-transparent'
-                                    }`}>
+                                      }`}>
                                       {isSelected && (
                                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
@@ -855,7 +1100,7 @@ export default function Services() {
               /* ------------ BOOKING DETAILS STEP ------------ */
               <div className="flex-1 p-6 sm:p-10 overflow-y-auto bg-[#F7F4EE] flex flex-col justify-center">
                 <div className="max-w-xl mx-auto w-full space-y-6">
-                  
+
                   {/* Step Header */}
                   <div>
                     <button
@@ -889,7 +1134,7 @@ export default function Services() {
 
                   {/* Booking Form */}
                   <form onSubmit={handleSendWhatsApp} className="space-y-5">
-                    
+
                     {/* Name */}
                     <div>
                       <label className="block text-xs font-semibold tracking-[0.15em] text-[#1C1D1D] uppercase mb-1.5">
@@ -930,11 +1175,10 @@ export default function Services() {
                             key={slot}
                             type="button"
                             onClick={() => setTime(slot)}
-                            className={`py-3 px-2 rounded-md border text-xs font-semibold tracking-[0.1em] uppercase transition-all ${
-                              time === slot
+                            className={`py-3 px-2 rounded-md border text-xs font-semibold tracking-[0.1em] uppercase transition-all ${time === slot
                                 ? 'border-[#9A6548] bg-[#9A6548] text-[#F7F4EE]'
                                 : 'border-[#343536]/20 bg-[#F7F4EE] text-[#1C1D1D]/75 hover:border-[#343536]/40'
-                            }`}
+                              }`}
                           >
                             {slot}
                           </button>
@@ -950,7 +1194,7 @@ export default function Services() {
                         className="w-full py-4 px-6 bg-[#9A6548] hover:bg-[#855437] disabled:bg-[#343536]/30 text-[#F7F4EE] font-semibold text-xs tracking-[0.2em] uppercase rounded-md transition-all flex items-center justify-center gap-3 cursor-pointer shadow-lg"
                       >
                         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                         </svg>
                         <span>SEND BOOKING REQUEST →</span>
                       </button>
@@ -987,6 +1231,129 @@ export default function Services() {
 
           </div>
 
+        </div>
+      )}
+
+      {/* ========================================================= */}
+      {/* 3. CREATIVE PRIVILEGE MEMBERSHIP REQUEST MODAL */}
+      {/* ========================================================= */}
+      {isMembershipModalOpen && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-[#1C1D1D]/90 backdrop-blur-md animate-fadeIn">
+
+          {/* Modal Box */}
+          <div className="relative w-full max-w-lg bg-[#F7F4EE] text-[#1C1D1D] rounded-lg shadow-2xl p-6 sm:p-10 border border-[#343536]/20 max-h-[90vh] overflow-y-auto">
+
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={() => setIsMembershipModalOpen(false)}
+              className="absolute top-5 right-5 w-10 h-10 rounded-full bg-[#1C1D1D] text-[#F7F4EE] hover:bg-[#9A6548] flex items-center justify-center transition-all cursor-pointer shadow-md hover:rotate-90 duration-300"
+              title="Close Modal"
+              aria-label="Close Modal"
+            >
+              <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Header */}
+            <div className="text-center mb-8 pr-6">
+              <p className="text-[11px] font-semibold tracking-[0.25em] text-[#9A6548] uppercase mb-1">
+                EXCLUSIVE PRIVILEGE
+              </p>
+              <h3 className="font-['Cormorant_Garamond',serif] text-3xl sm:text-4xl font-semibold text-[#1C1D1D]">
+                Become a Creative Privilege Member
+              </h3>
+              <p className="text-xs sm:text-sm text-[#1C1D1D]/75 font-light mt-2">
+                Complete your details and our team will contact you shortly.
+              </p>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleMembershipWhatsApp} className="space-y-5">
+
+              {/* Full Name */}
+              <div>
+                <label className="block text-xs font-semibold tracking-[0.15em] text-[#1C1D1D] uppercase mb-1.5">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Enter your full name"
+                  value={membershipName}
+                  onChange={(e) => setMembershipName(e.target.value)}
+                  className="w-full px-4 py-3 rounded-md border border-[#343536]/20 bg-[#F7F4EE] text-[#1C1D1D] focus:outline-none focus:border-[#9A6548] text-sm"
+                />
+              </div>
+
+              {/* Phone Number */}
+              <div>
+                <label className="block text-xs font-semibold tracking-[0.15em] text-[#1C1D1D] uppercase mb-1.5">
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="Enter your phone number"
+                  value={membershipPhone}
+                  onChange={(e) => setMembershipPhone(e.target.value)}
+                  className="w-full px-4 py-3 rounded-md border border-[#343536]/20 bg-[#F7F4EE] text-[#1C1D1D] focus:outline-none focus:border-[#9A6548] text-sm"
+                />
+              </div>
+
+              {/* Preferred Contact Time */}
+              <div>
+                <label className="block text-xs font-semibold tracking-[0.15em] text-[#1C1D1D] uppercase mb-2">
+                  Preferred Contact Time *
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  {['Morning', 'Afternoon', 'Evening'].map((slot) => (
+                    <button
+                      key={slot}
+                      type="button"
+                      onClick={() => setMembershipTime(slot)}
+                      className={`py-3 px-2 rounded-md border text-xs font-semibold tracking-[0.1em] uppercase transition-all cursor-pointer ${membershipTime === slot
+                          ? 'border-[#9A6548] bg-[#9A6548] text-[#F7F4EE]'
+                          : 'border-[#343536]/20 bg-[#F7F4EE] text-[#1C1D1D]/75 hover:border-[#343536]/40'
+                        }`}
+                    >
+                      {slot}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Selected Membership (Auto-selected) */}
+              <div>
+                <label className="block text-xs font-semibold tracking-[0.15em] text-[#1C1D1D] uppercase mb-1.5">
+                  Membership
+                </label>
+                <div className="w-full px-4 py-3 rounded-md border border-[#343536]/20 bg-[#1C1D1D]/5 text-[#1C1D1D] text-sm font-semibold flex items-center justify-between">
+                  <span>{selectedMembership}</span>
+                  <span className="text-xs text-[#9A6548] font-normal uppercase tracking-wider">
+                    {selectedMembership === 'Gold Membership' ? '₹6,000' : '₹11,999'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  disabled={!membershipName.trim() || !membershipPhone.trim()}
+                  className="w-full py-4 px-6 bg-[#9A6548] hover:bg-[#855437] disabled:bg-[#343536]/30 text-[#F7F4EE] font-semibold text-xs tracking-[0.2em] uppercase rounded-md transition-all flex items-center justify-center gap-3 cursor-pointer shadow-lg"
+                >
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                  </svg>
+                  <span>SEND MEMBERSHIP REQUEST</span>
+                </button>
+              </div>
+
+            </form>
+
+          </div>
         </div>
       )}
 
