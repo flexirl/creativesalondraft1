@@ -1,0 +1,10 @@
+# Robots.txt for Creative Salon
+# https://www.creativesalon.in
+
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+Disallow: /src/
+
+# Sitemap
+Sitemap: https://www.creativesalon.in/sitemap.xml

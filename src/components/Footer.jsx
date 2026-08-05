@@ -47,7 +47,7 @@ export default function Footer() {
   const currentOutlet = outlets[activeOutlet];
 
   return (
-    <footer id="contact" className="relative w-full bg-[#1C1D1D] text-[#F7F4EE] font-['Manrope',sans-serif] z-10 border-t border-[#343536]/40">
+    <footer id="contact" role="contentinfo" aria-label="Contact Creative Salon — Luxury Salon in Sector 14 & Sector 17A Gurgaon" className="relative w-full bg-[#1C1D1D] text-[#F7F4EE] font-['Manrope',sans-serif] z-10 border-t border-[#343536]/40">
       
       {/* ========================================================= */}
       {/* UNIFIED COMPACT VISIT US & NAVIGATION SECTION */}
@@ -71,7 +71,7 @@ export default function Footer() {
           </div>
 
           {/* Integrated Quick Nav Links */}
-          <nav className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2 border-t md:border-t-0 border-[#343536]/40">
+          <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2 border-t md:border-t-0 border-[#343536]/40">
             <a
               href="#top"
               onClick={(e) => handleNavClick(e, '#top')}
@@ -146,7 +146,7 @@ export default function Footer() {
           <div className="lg:col-span-6 space-y-4">
             
             {/* Address & Plus Code */}
-            <div className="min-h-[90px]">
+            <address className="min-h-[90px] not-italic">
               <h3 className="font-['Cormorant_Garamond',serif] text-2xl font-semibold text-[#F7F4EE] mb-1">
                 {currentOutlet.name}
               </h3>
@@ -156,7 +156,7 @@ export default function Footer() {
               <p className="text-[10px] font-mono text-[#9A6548] mt-0.5 tracking-wider uppercase">
                 {currentOutlet.plusCode}
               </p>
-            </div>
+            </address>
 
             {/* Contact Details Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-[#343536]/40">
@@ -261,12 +261,16 @@ export default function Footer() {
               >
                 <img
                   src="/logo1.png"
-                  alt="Creative Salon Logo"
+                  alt="Creative Salon — Best luxury unisex salon in Gurgaon"
+                  loading="lazy"
+                  decoding="async"
+                  width="176"
+                  height="52"
                   className="w-36 sm:w-44 h-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </a>
               <span className="text-[10px] text-[#F7F4EE]/60 tracking-wider font-light uppercase">
-                Gurugram’s Luxury Atelier
+                Gurgaon’s Premium Luxury Salon
               </span>
             </div>
 
@@ -294,7 +298,7 @@ export default function Footer() {
 
         {/* Bottom Line Copyright & Team FLEXIRL Credit */}
         <div className="mt-8 pt-4 border-t border-[#343536]/30 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-center sm:text-left text-[11px] font-light tracking-wide text-[#F7F4EE]/60">
-          <p>© Creative Salon. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Creative Salon Gurgaon. All Rights Reserved.</p>
           <p className="text-[#F7F4EE]/80">
             Designed &amp; Developed by{' '}
             <a

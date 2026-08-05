@@ -43,7 +43,15 @@ function initShader(canvas) {
   }
   syncSize()
 
-  const gl = canvas.getContext('webgl', { alpha: false }) || canvas.getContext('experimental-webgl', { alpha: false })
+  const gl = canvas.getContext('webgl', {
+    alpha: false,
+    antialias: false,
+    powerPreference: 'low-power',
+  }) || canvas.getContext('experimental-webgl', {
+    alpha: false,
+    antialias: false,
+    powerPreference: 'low-power',
+  })
   if (!gl) return () => {}
 
   const vs = `
@@ -112,13 +120,23 @@ function initShader(canvas) {
   const uTime = gl.getUniformLocation(prog, 'u_time')
   const uRes = gl.getUniformLocation(prog, 'u_resolution')
 
+  // Throttle to ~30fps — the subtle shader animation doesn't need 60fps
+  let lastFrameTime = 0
+  const FRAME_INTERVAL = 1000 / 30 // ~33ms per frame
+
   function render(t) {
+    animationId = requestAnimationFrame(render)
+
+    const delta = t - lastFrameTime
+    if (delta < FRAME_INTERVAL) return
+
+    lastFrameTime = t - (delta % FRAME_INTERVAL)
+
     syncSize()
     gl.viewport(0, 0, canvas.width, canvas.height)
     if (uTime) gl.uniform1f(uTime, t * 0.001)
     if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height)
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
-    animationId = requestAnimationFrame(render)
   }
 
   render(0)

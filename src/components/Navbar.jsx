@@ -70,6 +70,7 @@ export default function Navbar() {
 
   return (
     <nav
+      aria-label="Main navigation"
       className={`
         fixed top-0 left-0 right-0 z-50
         h-[68px] md:h-[72px]
@@ -112,6 +113,10 @@ export default function Navbar() {
           <img
             src="/logo1.png"
             alt="Creative Salon Logo"
+            width="240"
+            height="72"
+            fetchpriority="high"
+            decoding="sync"
             className="
               absolute
               left-0

@@ -65,6 +65,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
+      aria-label="About Creative Salon — Best Luxury Salon in Gurgaon"
       className="bg-[#F7F4EE] text-[#1C1D1D] py-16 md:py-24 px-6 lg:px-12 overflow-hidden"
     >
       <div className="max-w-[1280px] mx-auto">
@@ -106,22 +107,22 @@ export default function About() {
                   : "opacity-0 translate-y-8"
                 }`}
             >
-              Creative Salon is built on a decade of beauty expertise and more than five
-              years of creating refined salon experiences. From precision hair and advanced
-              skin rituals to nails, makeup and grooming, every experience is thoughtfully
+              Creative Salon is Gurgaon's premier luxury unisex salon, built on a decade of beauty expertise and more than five
+              years of creating refined salon experiences in Sector 14. From precision hair cuts, keratin treatments and advanced
+              skin rituals to nail art, bridal makeup and professional grooming, every experience is thoughtfully
               crafted for{" "}
               <strong className="font-bold text-[#9A6548]">women and men</strong>.
             </p>
 
             {/* Quote */}
-            <p
+            <blockquote
               className={`font-['Cormorant_Garamond'] italic text-2xl md:text-3xl text-[#1C1D1D] font-normal tracking-wide pl-6 border-l-2 border-[#9A6548] transition-all duration-700 ease-out delay-500 ${isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
                 }`}
             >
               &ldquo;Luxury isn't excess. It's the attention given to every detail.&rdquo;
-            </p>
+            </blockquote>
           </div>
 
           {/* Right Column: Animated Editorial Stats */}

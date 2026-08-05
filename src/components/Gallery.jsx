@@ -5,24 +5,23 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 // Add your full media library here
 // ==========================================
 const ALL_MEDIA = [
-  { id: 1, type: 'video', src: '/images/v1.mp4' },
-  { id: 2, type: 'video', src: '/images/v2.mp4' },
-  { id: 3, type: 'video', src: '/images/v3.mp4' },
-  { id: 4, type: 'video', src: '/images/v4.mp4' },
-  { id: 5, type: 'image', src: '/images/loreal.png' },
-  { id: 6, type: 'image', src: '/images/imgmen.png' },
-  { id: 7, type: 'video', src: '/images/nail.mp4' },
-  { id: 8, type: 'image', src: '/images/outer.png' },
-  // Example photo items (update paths as needed)
-  { id: 9, type: 'image', src: '/images/reception.jpg' },
-  { id: 10, type: 'image', src: '/images/wash-station.jpg' },
-  { id: 11, type: 'image', src: '/images/stylechair.png' },
+  { id: 1, type: 'video', src: '/images/v1.mp4', alt: 'Hair styling transformation at Creative Salon Gurgaon' },
+  { id: 2, type: 'video', src: '/images/v2.mp4', alt: 'Professional hair colour and highlights at Creative Salon' },
+  { id: 3, type: 'video', src: '/images/v3.mp4', alt: 'Bridal makeup session at luxury salon in Gurgaon' },
+  { id: 4, type: 'video', src: '/images/v4.mp4', alt: 'Keratin treatment and hair spa at Creative Salon' },
+  { id: 5, type: 'image', src: '/images/loreal.png', alt: 'L\'Or\u00e9al professional hair care products used at Creative Salon Gurgaon' },
+  { id: 6, type: 'image', src: '/images/imgmen.png', alt: 'Men\'s grooming and hair styling at best men\'s salon in Gurgaon' },
+  { id: 7, type: 'video', src: '/images/nail.mp4', alt: 'Nail extension and nail art services at Creative Salon' },
+  { id: 8, type: 'image', src: '/images/outer.png', alt: 'Creative Salon exterior — luxury salon in Sector 14 Gurgaon' },
+  { id: 9, type: 'image', src: '/images/reception.jpg', alt: 'Premium salon reception area at Creative Salon Gurgaon' },
+  { id: 10, type: 'image', src: '/images/wash-station.jpg', alt: 'Professional hair wash station at Creative Salon' },
+  { id: 11, type: 'image', src: '/images/stylechair.png', alt: 'Luxury styling chair at Creative Salon Sector 14 Gurgaon' },
 ];
 
 const INITIAL_SHOW_COUNT = 4;
 
 // Ultra-clean media card with zero text overlay
-function ReelCard({ item, onClick }) {
+const ReelCard = React.memo(function ReelCard({ item, onClick }) {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -51,7 +50,7 @@ function ReelCard({ item, onClick }) {
     <div
       ref={containerRef}
       onClick={onClick}
-      className="relative group aspect-[9/16] w-full bg-[#1C1D1D] rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-1.5"
+      className="relative group aspect-[9/16] w-full bg-[#2a2a2a] rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-1.5"
     >
       {item.type === 'video' ? (
         <video
@@ -66,13 +65,15 @@ function ReelCard({ item, onClick }) {
       ) : (
         <img
           src={item.src}
-          alt="Gallery item"
+          alt={item.alt || 'Creative Salon Gurgaon gallery'}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
       )}
     </div>
   );
-}
+});
 
 export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState(null);
@@ -117,7 +118,7 @@ export default function Gallery() {
   const prevLightbox = useCallback(() => setLightboxIndex((prev) => (prev - 1 + ALL_MEDIA.length) % ALL_MEDIA.length), []);
 
   return (
-    <section id="gallery" className="relative w-full bg-[#F7F4EE] text-[#1C1D1D] py-12 sm:py-20 px-4 sm:px-8 font-['Manrope',sans-serif] overflow-hidden">
+    <section id="gallery" aria-label="Gallery — Hair, Beauty & Salon Work at Creative Salon Gurgaon" className="relative w-full bg-[#F7F4EE] text-[#1C1D1D] py-12 sm:py-20 px-4 sm:px-8 font-['Manrope',sans-serif] overflow-hidden">
       
       {/* Top Line & Main Container */}
       <div className="max-w-[1180px] mx-auto border-t border-[#343536]/15 pt-10">
@@ -277,6 +278,7 @@ export default function Gallery() {
                 onClick={closeLightbox}
                 className="w-10 h-10 rounded-full bg-[#F7F4EE]/10 hover:bg-[#9A6548] text-[#F7F4EE] flex items-center justify-center transition-all cursor-pointer hover:rotate-90 duration-300"
                 title="Close"
+                aria-label="Close lightbox"
               >
                 <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
@@ -292,6 +294,7 @@ export default function Gallery() {
               onClick={prevLightbox}
               className="absolute left-2 sm:left-12 z-20 p-3 rounded-full bg-[#1C1D1D]/80 hover:bg-[#9A6548] text-[#F7F4EE] border border-[#F7F4EE]/20 transition-all cursor-pointer shadow-lg"
               title="Previous"
+              aria-label="Previous media"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
@@ -313,7 +316,8 @@ export default function Gallery() {
               ) : (
                 <img
                   src={ALL_MEDIA[lightboxIndex].src}
-                  alt="Enlarged media"
+                  alt={ALL_MEDIA[lightboxIndex].alt || 'Creative Salon Gurgaon gallery - enlarged view'}
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               )}
@@ -324,6 +328,7 @@ export default function Gallery() {
               onClick={nextLightbox}
               className="absolute right-2 sm:right-12 z-20 p-3 rounded-full bg-[#1C1D1D]/80 hover:bg-[#9A6548] text-[#F7F4EE] border border-[#F7F4EE]/20 transition-all cursor-pointer shadow-lg"
               title="Next"
+              aria-label="Next media"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />

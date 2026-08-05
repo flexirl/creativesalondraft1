@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 /**
  * Custom hook that observes elements with the 'reveal-up' class
  * and adds 'active' when they enter the viewport.
+ * Uses unobserve to disconnect individual elements once revealed — avoids
+ * re-observing already-visible elements for better scroll performance.
  */
 export function useScrollReveal() {
   useEffect(() => {
@@ -11,6 +13,8 @@ export function useScrollReveal() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active')
+            // Stop observing once revealed — element won't re-animate
+            observer.unobserve(entry.target)
           }
         })
       },
@@ -20,8 +24,6 @@ export function useScrollReveal() {
     const elements = document.querySelectorAll('.reveal-up')
     elements.forEach((el) => observer.observe(el))
 
-    return () => {
-      elements.forEach((el) => observer.unobserve(el))
-    }
+    return () => observer.disconnect()
   }, [])
 }

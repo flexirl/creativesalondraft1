@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 // Replace these video links with your newly generated MP4 URLs
 const heroMedia = [
@@ -49,18 +49,27 @@ export default function Hero() {
     document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
+  // Only render current and next video to reduce memory/bandwidth
+  const visibleIndices = useMemo(() => {
+    const next = (currentIdx + 1) % heroMedia.length;
+    return new Set([currentIdx, next]);
+  }, [currentIdx]);
+
   return (
-    <section className="relative h-screen w-full bg-[#1C1D1D] text-[#F7F4EE] flex items-center justify-center overflow-hidden font-['Manrope',sans-serif]">
+    <section aria-label="Creative Salon Gurgaon — Luxury Hair, Beauty, Skin & Nails" className="relative h-screen h-[100svh] w-full bg-[#1C1D1D] text-[#F7F4EE] flex items-center justify-center overflow-hidden font-['Manrope',sans-serif]">
 
       {/* FULL-WIDTH BACKGROUND MEDIA CAROUSEL */}
       <div className="absolute inset-0 w-full h-full z-0">
         {heroMedia.map((item, idx) => {
           const isCurrent = idx === currentIdx;
+          // Only mount current and next slide to save memory
+          if (!visibleIndices.has(idx)) return null;
           return (
             <div
               key={item.src}
               className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                 }`}
+              style={{ willChange: 'opacity' }}
             >
               {isVideo(item.src) ? (
                 <video
@@ -69,12 +78,13 @@ export default function Hero() {
                   loop
                   muted
                   playsInline
+                  preload={isCurrent ? 'auto' : 'metadata'}
                   className="w-full h-full object-cover scale-105 animate-subtle-zoom"
                 />
               ) : (
                 <img
                   src={item.src}
-                  alt={item.title}
+                  alt="Creative Salon showcase"
                   className="w-full h-full object-cover scale-105"
                 />
               )}
@@ -89,8 +99,6 @@ export default function Hero() {
       {/* OVERLAY CONTENT (Center-Aligned / Responsive) */}
       <div className="relative z-20 max-w-5xl mx-auto px-6 text-center flex flex-col items-center space-y-6 pt-16">
 
-
-
         {/* Main Headline */}
         <h1 className="font-['Cormorant_Garamond',serif] text-5xl sm:text-7xl lg:text-8xl font-light leading-tight tracking-tight text-[#F7F4EE]">
           Beauty, <span className="italic font-normal text-[#9A6548]">Refined.</span>
@@ -98,18 +106,24 @@ export default function Hero() {
 
         {/* Subtitle Services List */}
         <p className="text-xs sm:text-base font-light tracking-[0.25em] text-[#E8E2D8]/90 uppercase max-w-xl">
-          Hair <span className="text-[#9A6548]">•</span> Skin <span className="text-[#9A6548]">•</span> Nails <span className="text-[#9A6548]">•</span> Makeup
+          Hair <span className="text-[#9A6548]">•</span> Skin <span className="text-[#9A6548]">•</span> Nails <span className="text-[#9A6548]">•</span> Makeup <span className="text-[#9A6548]">•</span> Bridal
         </p>
 
-        {/* Dynamic Media Tag Info */}
-        <div className="pt-2 text-center">
-          <p className="font-['Cormorant_Garamond',serif] text-lg sm:text-xl text-[#F7F4EE] italic">
-            {heroMedia[currentIdx].title}
-          </p>
-          <p className="text-[10px] tracking-[0.2em] text-[#E8E2D8]/70 uppercase font-medium">
-            {heroMedia[currentIdx].subtitle}
-          </p>
-        </div>
+        {/* Dynamic Media Tag Info — only render if data exists */}
+        {(heroMedia[currentIdx].title || heroMedia[currentIdx].subtitle) && (
+          <div className="pt-2 text-center">
+            {heroMedia[currentIdx].title && (
+              <p className="font-['Cormorant_Garamond',serif] text-lg sm:text-xl text-[#F7F4EE] italic">
+                {heroMedia[currentIdx].title}
+              </p>
+            )}
+            {heroMedia[currentIdx].subtitle && (
+              <p className="text-[10px] tracking-[0.2em] text-[#E8E2D8]/70 uppercase font-medium">
+                {heroMedia[currentIdx].subtitle}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
@@ -146,7 +160,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll Down Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity" aria-hidden="true">
         <div className="w-4 h-7 rounded-full border border-[#E8E2D8] flex justify-center p-1">
           <div className="w-1 h-1.5 bg-[#E8E2D8] rounded-full animate-bounce" />
         </div>

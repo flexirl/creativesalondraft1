@@ -75,8 +75,9 @@ function BridalExperienceSection() {
           >
             <img
               src="/images/BRIDAL1.jpg"
-              alt="Luxury Indian Bridal Makeup & Hair Styling"
+              alt="Best bridal makeup artist in Gurgaon — luxury Indian bridal hair styling and makeup at Creative Salon"
               loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105 brightness-[0.95]"
               onError={(e) => {
                 e.currentTarget.src = "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&q=80&w=1400";
@@ -110,7 +111,7 @@ function BridalExperienceSection() {
 
             {/* Short Description */}
             <p className="font-['Manrope',sans-serif] text-sm sm:text-base font-light leading-relaxed text-[#1C1D1D]/80 max-w-xl">
-              From pre-bridal skincare rituals to your wedding day transformation, our bridal experts create timeless looks designed to make every bride feel confident, radiant and unforgettable.
+              From pre-bridal skincare rituals to your wedding day transformation, our bridal makeup experts in Gurgaon create timeless looks designed to make every bride feel confident, radiant and unforgettable.
             </p>
 
             {/* Accent Separator */}
@@ -693,7 +694,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="relative w-full bg-[#1C1D1D] text-[#F7F4EE] overflow-hidden font-['Manrope',sans-serif]">
+    <section id="services" aria-label="Hair, Beauty & Grooming Services — Best Salon in Gurgaon" className="relative w-full bg-[#1C1D1D] text-[#F7F4EE] overflow-hidden font-['Manrope',sans-serif]">
 
       {/* Top Subtle Border / Separator */}
       <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#343536] to-transparent" />
@@ -707,8 +708,9 @@ export default function Services() {
           {/* Background Image with Scale Zoom Effect */}
           <img
             src="/images/her.jpg"
-            alt="Women's Hair Artistry & Beauty"
+            alt="Women's hair styling, facial, nail art and beauty services at Creative Salon Gurgaon"
             loading="lazy"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105 brightness-[0.9]"
             onError={(e) => {
               e.currentTarget.src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1400";
@@ -769,8 +771,9 @@ export default function Services() {
           {/* Background Image with Scale Zoom Effect */}
           <img
             src="/images/him.png"
-            alt="Men's Refined Grooming"
+            alt="Professional men's grooming, hair cut and styling at Creative Salon Gurgaon"
             loading="lazy"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-105 brightness-[0.88]"
             onError={(e) => {
               e.currentTarget.src = "/images/imgmen.png";
@@ -839,7 +842,7 @@ export default function Services() {
       {/* 1. BOOK YOUR VISIT — GENDER ENTRY CHOICE MODAL */}
       {/* ========================================================= */}
       {isChoiceModalOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-[#1C1D1D]/90 backdrop-blur-md animate-fadeIn">
+        <div role="dialog" aria-modal="true" aria-label="Book your visit" className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-[#1C1D1D]/90 backdrop-blur-md animate-fadeIn">
 
           {/* Modal Box */}
           <div className="relative w-full max-w-lg bg-[#F7F4EE] text-[#1C1D1D] rounded-lg shadow-2xl p-6 sm:p-10 border border-[#343536]/20">
@@ -932,7 +935,7 @@ export default function Services() {
       {/* 2. SERVICE SELECTION & WHATSAPP BOOKING MODAL */}
       {/* ========================================================= */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-0 sm:p-4 md:p-6 bg-[#1C1D1D]/90 backdrop-blur-md animate-fadeIn">
+        <div role="dialog" aria-modal="true" aria-label="Select services and book appointment" className="fixed inset-0 z-[9999] flex items-center justify-center p-0 sm:p-4 md:p-6 bg-[#1C1D1D]/90 backdrop-blur-md animate-fadeIn">
 
           {/* Modal Card */}
           <div className="relative w-full max-w-5xl h-[100dvh] sm:h-[90vh] sm:max-h-[850px] bg-[#F7F4EE] text-[#1C1D1D] rounded-none sm:rounded-lg shadow-2xl flex flex-col overflow-hidden border border-[#343536]/20">
@@ -1238,7 +1241,7 @@ export default function Services() {
       {/* 3. CREATIVE PRIVILEGE MEMBERSHIP REQUEST MODAL */}
       {/* ========================================================= */}
       {isMembershipModalOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-[#1C1D1D]/90 backdrop-blur-md animate-fadeIn">
+        <div role="dialog" aria-modal="true" aria-label="Creative Privilege Membership registration" className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-[#1C1D1D]/90 backdrop-blur-md animate-fadeIn">
 
           {/* Modal Box */}
           <div className="relative w-full max-w-lg bg-[#F7F4EE] text-[#1C1D1D] rounded-lg shadow-2xl p-6 sm:p-10 border border-[#343536]/20 max-h-[90vh] overflow-y-auto">
